@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RentaとAmazonKindleを検索するモノ</title>
+<script src="ecl.js"></script>
+<script>
+const urlAmazon = "https://www.amazon.co.jp/s/ref=nb_sb_noss?url=search-alias%3Ddigital-text&field-keywords=";
+const urlRenta  = "https://renta.papy.co.jp/renta/sc/frm/list?word=";
+
+document.addEventListener("DOMContentLoaded", () => {
+	document.querySelector("#btnOpen").addEventListener("click", () => {
+		const text = document.querySelector("#txtSearch").value;
+		if (text == "") { return; }
+		
+		text.split("\n").forEach((item) => {
+			window.open(urlAmazon + encodeURIComponent(item));
+			window.open(urlRenta  + EscapeEUCJP       (item));
+		});
+	});
+
+	document.body.addEventListener("keypress", (e) => {
+		const KEY_ENTER = 13;
+		if (e.ctrlKey == true && e.keyCode == KEY_ENTER) {
+			document.querySelector("#btnOpen").click();
+		}
+	});
+
+	document.querySelector("#txtSearch").focus();
+});
+</script>
+</head>
+<body>
+<div><button id="btnOpen">OPEN! (ctrl+enter)</button></div>
+<textarea id="txtSearch" style="width:100%; height:10em;"></textarea>
+</body>
+</html>
+
