@@ -20,20 +20,31 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	});
 
-	document.body.addEventListener("keypress", (e) => {
+	document.body.addEventListener("keyup", (e) => {
 		const KEY_ENTER = 13;
 		if (e.ctrlKey == true && e.keyCode == KEY_ENTER) {
 			document.querySelector("#btnOpen").click();
 		}
+		updateLink();
 	});
 
 	document.querySelector("#txtSearch").focus();
 });
+
+function updateLink() {
+	const text = document.querySelector("#txtSearch").value;
+	
+	const item = text.split("\n")[0];
+	document.querySelector("#lnkRenta" ).href = urlRenta  + EscapeEUCJP       (item);
+	document.querySelector("#lnkAmazon").href = urlAmazon + encodeURIComponent(item);
+}
 </script>
 </head>
 <body>
 <div><button id="btnOpen">OPEN! (ctrl+enter)</button></div>
-<textarea id="txtSearch" style="width:100%; height:10em;"></textarea>
+<div><textarea id="txtSearch" style="width:100%; height:10em;"></textarea></div>
+<p><a id="lnkRenta"  href="#link">Renta Link </a></p>
+<p><a id="lnkAmazon" href="#link">Amazon Link</a></p>
 </body>
 </html>
 
