@@ -6,8 +6,8 @@
 <title>RentaとAmazonKindleを検索するモノ</title>
 <script src="ecl.js"></script>
 <script>
-const urlAmazon = "https://www.amazon.co.jp/s/ref=nb_sb_noss?url=search-alias%3Ddigital-text&field-keywords=";
 const urlRenta  = "https://renta.papy.co.jp/renta/sc/frm/list?word=";
+const urlAmazon = "https://www.amazon.co.jp/s/ref=nb_sb_noss?url=search-alias%3Ddigital-text&field-keywords=";
 
 document.addEventListener("DOMContentLoaded", () => {
 	document.querySelector("#btnOpen").addEventListener("click", () => {
@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (text == "") { return; }
 		
 		text.split("\n").forEach((item) => {
-			window.open(urlAmazon + encodeURIComponent(item));
 			window.open(urlRenta  + EscapeEUCJP       (item));
+			window.open(urlAmazon + encodeURIComponent(item));
 		});
 	});
 
