@@ -6,12 +6,13 @@
 <title>RentaとAmazonKindleを検索するモノ</title>
 <script src="ecl.js"></script>
 <script>
+const $ = (s) => document.querySelector(s);
 const urlRenta  = "https://renta.papy.co.jp/renta/sc/frm/list?word=";
 const urlAmazon = "https://www.amazon.co.jp/s/ref=nb_sb_noss?url=search-alias%3Ddigital-text&field-keywords=";
 
 document.addEventListener("DOMContentLoaded", () => {
-	document.querySelector("#btnOpen").addEventListener("click", () => {
-		const text = document.querySelector("#txtSearch").value;
+	$("#btnOpen").addEventListener("click", () => {
+		const text = $("#txtSearch").value;
 		if (text == "") { return; }
 		
 		text.split("\n").forEach((item) => {
@@ -23,21 +24,21 @@ document.addEventListener("DOMContentLoaded", () => {
 	document.body.addEventListener("keyup", (e) => {
 		const KEY_ENTER = 13;
 		if (e.ctrlKey == true && e.keyCode == KEY_ENTER) {
-			document.querySelector("#btnOpen").click();
+			$("#btnOpen").click();
 		}
 	});
 
 	setInterval(updateLink, 100);
 
-	document.querySelector("#txtSearch").focus();
+	$("#txtSearch").focus();
 });
 
 function updateLink() {
-	const text = document.querySelector("#txtSearch").value;
+	const text = $("#txtSearch").value;
 	
 	const item = text.split("\n")[0];
-	document.querySelector("#lnkRenta" ).href = urlRenta  + EscapeEUCJP       (item);
-	document.querySelector("#lnkAmazon").href = urlAmazon + encodeURIComponent(item);
+	$("#lnkRenta" ).href = urlRenta  + EscapeEUCJP       (item);
+	$("#lnkAmazon").href = urlAmazon + encodeURIComponent(item);
 }
 </script>
 </head>
