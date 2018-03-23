@@ -7,8 +7,11 @@
 <script src="ecl.js"></script>
 <script>
 const $ = (s) => document.querySelector(s);
-const urlRenta  = "https://renta.papy.co.jp/renta/sc/frm/list?word=";
-const urlAmazon = "https://www.amazon.co.jp/s/ref=nb_sb_noss?url=search-alias%3Ddigital-text&field-keywords=";
+const urlRenta      = "https://renta.papy.co.jp/renta/sc/frm/list?word=";
+const urlAmazon     = "https://www.amazon.co.jp/s/ref=nb_sb_noss?url=search-alias%3Ddigital-text&field-keywords=";
+const urlBooklive   = "https://booklive.jp/search/keyword?keyword=";
+const urlBookwalker = "https://bookwalker.jp/search/?qcat=&word=";
+const urlEbook      = "https://www.ebookjapan.jp/ebj/search_book/?q=";
 
 document.addEventListener("DOMContentLoaded", () => {
 	$("#btnOpen").addEventListener("click", () => {
@@ -16,8 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		if (text == "") { return; }
 		
 		text.split("\n").forEach((item) => {
-			window.open(urlRenta  + EscapeEUCJP       (item));
-			window.open(urlAmazon + encodeURIComponent(item));
+			window.open(urlRenta      + EscapeEUCJP       (item));
+			window.open(urlAmazon     + encodeURIComponent(item));
+			window.open(urlBooklive   + encodeURIComponent(item));
+			window.open(urlBookwalker + encodeURIComponent(item));
+			window.open(urlEbook      + encodeURIComponent(item));
 		});
 	});
 
@@ -37,16 +43,25 @@ function updateLink() {
 	const text = $("#txtSearch").value;
 	
 	const item = text.split("\n")[0];
-	$("#lnkRenta" ).href = urlRenta  + EscapeEUCJP       (item);
-	$("#lnkAmazon").href = urlAmazon + encodeURIComponent(item);
+	$("#lnkRenta"     ).href = urlRenta      + EscapeEUCJP       (item);
+	$("#lnkAmazon"    ).href = urlAmazon     + encodeURIComponent(item);
+	$("#lnkBooklive"  ).href = urlBooklive   + encodeURIComponent(item);
+	$("#lnkBookwalker").href = urlBookwalker + encodeURIComponent(item);
+	$("#lnkEbook"     ).href = urlEbook      + encodeURIComponent(item);
+
 }
 </script>
 </head>
 <body>
 <div><button id="btnOpen">OPEN! (ctrl+enter)</button></div>
 <div><textarea id="txtSearch" style="width:100%; height:10em;"></textarea></div>
-<p><a id="lnkRenta"  href="#link">Renta Link </a></p>
-<p><a id="lnkAmazon" href="#link">Amazon Link</a></p>
+<p><a id="lnkRenta"      href="#link">Renta Link </a></p>
+<p><a id="lnkAmazon"     href="#link">Amazon Link</a></p>
+<p><a id="lnkBooklive"   href="#link">BookLive Link</a></p>
+<p><a id="lnkBookwalker" href="#link">BookWalker Link</a></p>
+<p><a id="lnkEbook"      href="#link">ebook japan Link</a></p>
+
+
 </body>
 </html>
 
